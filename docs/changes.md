@@ -101,3 +101,7 @@
 - Filled NaNs with 0.0 (mean imputation).
 - Selected top 50 genes by variance for initial analysis.
 - Saved to `data/processed/GSE215865_subset.csv`.
+- **Secondary Dataset:** Processed `GSE157859` TPM matrix.
+    - Loaded `GSE157859_TPM_matrix.txt.gz`.
+    - Applied Log2(x+1) transform (max value > 100).
+    - Saved to `data/processed/GSE157859_subset.csv`.
