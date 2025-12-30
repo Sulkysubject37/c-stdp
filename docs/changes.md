@@ -105,3 +105,16 @@
     - Loaded `GSE157859_TPM_matrix.txt.gz`.
     - Applied Log2(x+1) transform (max value > 100).
     - Saved to `data/processed/GSE157859_subset.csv`.
+
+### Step 9: Spike Encoding on Real Data
+
+**Changes:**
+- Created `pipelines/run_real_data_spike_encoding.py`.
+- Generated visuals in `visuals/real_data/`.
+
+**Details:**
+- Applied `sigma=1.5` adaptive thresholding to both `GSE215865` and `GSE157859`.
+- Generated `raster_plot.png` (Spike Raster).
+- Generated `activation_order.png` (First spike timing per gene).
+- Primary dataset (GSE215865) has 1392 time points (samples treated as time).
+- Secondary dataset (GSE157859) has 38 time points.
