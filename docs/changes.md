@@ -58,3 +58,11 @@
 
 **Assumptions:**
 - Adjacency matrix is directed (A[i, j] means i -> j).
+
+### Step 5: Synthetic Pipeline Test
+
+- **Observation:** Failure: Precision 0.1786, Recall 1.0. High False Positives.
+- **Diagnosis:** Strong LTD deficit. `A_pos * tau_pos` (0.5) > `A_neg * tau_neg` (0.4).
+- **Fix:** Increased `A_neg` to 0.06.
+- **Result (Run 2):** Precision 0.2857 (> chance 0.15), Recall 0.1143. SHD 41. Sparsity achieved (75% weights = 0).
+- **Visuals:** Generated `raster_plot.png` and `comparison_matrices.png`.
