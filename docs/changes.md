@@ -130,3 +130,12 @@
 - **GSE215865 Findings:** Top regulator `ENSG00000222009.8`.
 - **GSE157859 Findings:** Top regulator `ENSG00000031081.11`.
 - Saved `inferred_grn_adj.csv`, `grn_heatmap.png`, `grn_graph.png` for both.
+
+### Step 11: Pipeline Orchestration
+
+**Changes:**
+- Created `pipelines/run_cstdp_pipeline.sh`.
+
+**Details:**
+- Bash script to execute the full sequence: Synthetic Test -> Preprocessing -> Spike Encoding -> GRN Inference.
+- Uses `casual-stdp` virtual environment.
