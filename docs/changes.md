@@ -87,3 +87,4 @@
 - Dataset: GSE215865 ("Molecular states during acute COVID-19...").
 - Format: GEO Series Matrix (metadata + expression table).
 - Contains longitudinal whole-blood RNA-seq from COVID-19 patients.
+- **Secondary Dataset:** Downloaded `GSE157859` (GPL16791 and GPL20301). Multi-platform series.
