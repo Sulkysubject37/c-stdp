@@ -46,3 +46,15 @@
 
 **Assumptions:**
 - Simple gradient `np.gradient` used for derivative estimation in threshold calculation.
+
+### Step 4: Evaluation Utilities
+
+**Changes:**
+- Created `src/utils/evaluate.py`.
+
+**Details:**
+- Implemented `calculate_metrics` (Precision, Recall, F1, SHD).
+- Implemented `evaluate_directionality` to specifically assess directed edge recovery among found edges.
+
+**Assumptions:**
+- Adjacency matrix is directed (A[i, j] means i -> j).
