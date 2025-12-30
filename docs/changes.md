@@ -76,3 +76,14 @@
 **Details:**
 - `01_synthetic_demo`: Replicates the synthetic test pipeline in a notebook format for demonstration.
 - `02_interpretability_trace`: Traces the weight evolution of a single edge to explain the STDP mechanism.
+
+### Step 7: Download COVID-19 Dataset
+
+**Changes:**
+- Created `data/raw/GSE215865/`.
+- Downloaded `GSE215865_series_matrix.txt.gz` from GEO.
+
+**Details:**
+- Dataset: GSE215865 ("Molecular states during acute COVID-19...").
+- Format: GEO Series Matrix (metadata + expression table).
+- Contains longitudinal whole-blood RNA-seq from COVID-19 patients.
