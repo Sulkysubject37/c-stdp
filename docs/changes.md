@@ -19,3 +19,18 @@
 - `src/cstpd` in the initial file list was a typo; used `src/cstdp`.
 - Time points are provided or can be handled by `np.gradient` (supports non-uniform).
 - "Bounded" weights interpreted as hard clipping [0, w_max].
+
+### Step 2: Synthetic GRN Simulator
+
+**Changes:**
+- Created `src/utils/simulate_grn.py`.
+
+**Details:**
+- Implemented `generate_synthetic_grn` to create random sparse directed graphs with delays.
+- Implemented `simulate_expression` using a delay-differential equation approximation (Euler method).
+- Model includes spontaneous bursts, exponential decay, and linear delayed coupling.
+
+**Assumptions:**
+- `dt=1` for simulation steps.
+- Delays are integer multiples of `dt`.
+- Expression is constrained to be non-negative.
