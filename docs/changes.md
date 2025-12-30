@@ -66,3 +66,13 @@
 - **Fix:** Increased `A_neg` to 0.06.
 - **Result (Run 2):** Precision 0.2857 (> chance 0.15), Recall 0.1143. SHD 41. Sparsity achieved (75% weights = 0).
 - **Visuals:** Generated `raster_plot.png` and `comparison_matrices.png`.
+
+### Step 6: Explanatory Notebooks
+
+**Changes:**
+- Created `notebooks/01_synthetic_demo.ipynb`.
+- Created `notebooks/02_interpretability_trace.ipynb`.
+
+**Details:**
+- `01_synthetic_demo`: Replicates the synthetic test pipeline in a notebook format for demonstration.
+- `02_interpretability_trace`: Traces the weight evolution of a single edge to explain the STDP mechanism.
