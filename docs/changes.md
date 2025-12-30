@@ -34,3 +34,15 @@
 - `dt=1` for simulation steps.
 - Delays are integer multiples of `dt`.
 - Expression is constrained to be non-negative.
+
+### Step 3: Spike Encoding Utilities
+
+**Changes:**
+- Created `src/utils/spike_encoding.py`.
+
+**Details:**
+- Implemented `plot_raster` for visualizing spike timing.
+- Implemented `calculate_adaptive_thresholds` using mean + sigma * std of derivatives.
+
+**Assumptions:**
+- Simple gradient `np.gradient` used for derivative estimation in threshold calculation.
