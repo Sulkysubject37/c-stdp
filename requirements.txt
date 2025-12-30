@@ -1,0 +1,9 @@
+# Python dependencies
+numpy
+scipy
+pandas
+scikit-learn
+matplotlib
+seaborn
+brian2
+pytest
