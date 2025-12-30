@@ -118,3 +118,15 @@
 - Generated `activation_order.png` (First spike timing per gene).
 - Primary dataset (GSE215865) has 1392 time points (samples treated as time).
 - Secondary dataset (GSE157859) has 38 time points.
+
+### Step 10: Run C-STDP on Real Data
+
+**Changes:**
+- Created `pipelines/run_real_data_cstdp.py`.
+- Generated GRN artifacts in `visuals/real_data/`.
+
+**Details:**
+- Ran C-STDP (`A_pos=0.05, A_neg=0.06`) on processed subsets.
+- **GSE215865 Findings:** Top regulator `ENSG00000222009.8`.
+- **GSE157859 Findings:** Top regulator `ENSG00000031081.11`.
+- Saved `inferred_grn_adj.csv`, `grn_heatmap.png`, `grn_graph.png` for both.
