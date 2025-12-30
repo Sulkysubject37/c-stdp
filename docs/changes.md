@@ -88,3 +88,16 @@
 - Format: GEO Series Matrix (metadata + expression table).
 - Contains longitudinal whole-blood RNA-seq from COVID-19 patients.
 - **Secondary Dataset:** Downloaded `GSE157859` (GPL16791 and GPL20301). Multi-platform series.
+
+### Step 8: Data Preprocessing
+
+**Changes:**
+- Created `src/utils/preprocess.py`.
+- Processed `GSE215865` LogCPM matrix.
+
+**Details:**
+- Detected `GSE215865_series_matrix.txt.gz` was empty of data; used `suppl/GSE215865_rnaseq_logCPM_matrix.csv.gz` instead.
+- Implemented `load_expression_matrix`, `normalize_expression` (Z-score), `select_genes` (Variance).
+- Filled NaNs with 0.0 (mean imputation).
+- Selected top 50 genes by variance for initial analysis.
+- Saved to `data/processed/GSE215865_subset.csv`.
