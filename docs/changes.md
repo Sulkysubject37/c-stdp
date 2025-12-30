@@ -139,3 +139,21 @@
 **Details:**
 - Bash script to execute the full sequence: Synthetic Test -> Preprocessing -> Spike Encoding -> GRN Inference.
 - Uses `casual-stdp` virtual environment.
+
+### Step 12: Final Summary
+
+**What Works:**
+- **Core C-STDP Algorithm:** Implemented with Pair-based STDP, adaptive thresholding, and spike encoding.
+- **Synthetic Validation:** Successfully recovered directed edges above chance (Precision > 0.28 vs Chance 0.15) after tuning `A_neg > A_pos`.
+- **Real Data Pipeline:** Fully automated pipeline for GSE215865 (COVID-19) and GSE157859.
+- **Visualizations:** Raster plots, Activation Order, and GRN Heatmaps generated.
+
+**Uncertainties:**
+- **Biological Validity:** Inferred regulators (e.g., `ENSG00000222009.8`) require literature verification.
+- **Parameter Sensitivity:** STDP parameters (tau, A+, A-) were tuned on synthetic data but might need adjustment for real biological noise levels.
+- **Time/Sample:** Samples were treated as a time-series. If samples are not strictly longitudinal for the same subject, the "causality" is pseudo-temporal.
+
+**Next Steps:**
+- Integrate biological ground truth (e.g., ChIP-seq data) for real-world validation.
+- Implement varying delays in STDP (currently implicit in window).
+- Explore detailed longitudinal metadata for GSE215865 to respect patient timelines.
