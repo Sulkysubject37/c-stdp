@@ -127,7 +127,8 @@ class CausalSTDP:
     def run_cstdp(self, 
                   spike_trains: List[np.ndarray], 
                   n_genes: int,
-                  initial_weights: Optional[np.ndarray] = None) -> np.ndarray:
+                  initial_weights: Optional[np.ndarray] = None,
+                  return_trace: bool = False) -> Tuple[np.ndarray, Optional[Dict]]:
         """
         Runs the pair-based STDP learning rule over all spike trains.
         
@@ -135,14 +136,18 @@ class CausalSTDP:
             spike_trains: List of spike time arrays for each gene.
             n_genes: Number of genes.
             initial_weights: Optional starting weights. Defaults to zeros.
+            return_trace: If True, returns detailed logs of updates.
             
         Returns:
-            Final weight matrix W where W_ij is influence of i on j.
+            Final weight matrix W.
+            trace: Dict mapping (i, j) -> List of (t_event, delta_w) if return_trace else None
         """
         if initial_weights is None:
             weights = np.zeros((n_genes, n_genes))
         else:
             weights = initial_weights.copy()
+            
+        trace = {} if return_trace else None
             
         # Iterate over all pairs of genes (i -> j)
         for i in range(n_genes):
@@ -153,17 +158,21 @@ class CausalSTDP:
                 spikes_i = spike_trains[i]
                 spikes_j = spike_trains[j]
                 
-                # All-to-all pair interactions
-                # In strict STDP, often nearest neighbor is used, but for GRN inference 
-                # all pairs within a window are usually considered to capture integrated causality.
-                # We implement all-to-all here.
-                
                 delta_w_sum = 0.0
+                pair_updates = []
                 
                 for t_i in spikes_i:
                     for t_j in spikes_j:
-                        delta_w_sum += self.stdp_update(weights[i, j], t_i, t_j)
+                        dw = self.stdp_update(weights[i, j], t_i, t_j)
+                        delta_w_sum += dw
+                        if return_trace and abs(dw) > 1e-10:
+                            # Log the event at the time of the SECOND spike in the pair
+                            pair_updates.append((max(t_i, t_j), dw))
                         
                 weights[i, j] += delta_w_sum
                 
-        return self.normalize_weights(weights)
+                if return_trace:
+                    pair_updates.sort(key=lambda x: x[0])
+                    trace[(i, j)] = pair_updates
+                
+        return self.normalize_weights(weights), trace

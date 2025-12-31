@@ -198,3 +198,16 @@
 - **Collapse:** Performance dropped to 0 for delays >= 30, as the STDP exponential decay reaches the noise floor.
 - **Directionality:** Correct direction (100% accuracy) was maintained for all successful detections, proving STDP robustness to varying delay lengths within its integration window.
 
+
+### Step 4: Edge-Level Causal Trace Extraction
+
+**Changes:**
+- Modified `src/cstdp/stdp.py` to support returning a detailed update trace.
+- Created `analysis/causal_trace.py`.
+- Extracted temporal evidence for a single True Positive edge (`Gene 0 -> Gene 5`).
+
+**Results:**
+- **Granularity:** Identified 182 discrete spike-pair events contributing to the inference of the 0 -> 5 link.
+- **Visual Evidence:** Generated `analysis/visuals/causal_trace_plot.png` showing cumulative weight growth over time.
+- **Interpretability:** The existence of any edge in C-STDP is now provably traceable to specific sets of gene activation events and their relative timings.
+
