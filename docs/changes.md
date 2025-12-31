@@ -211,3 +211,16 @@
 - **Visual Evidence:** Generated `analysis/visuals/causal_trace_plot.png` showing cumulative weight growth over time.
 - **Interpretability:** The existence of any edge in C-STDP is now provably traceable to specific sets of gene activation events and their relative timings.
 
+
+### Step 5: Competing Explanation Control
+
+**Changes:**
+- Created `analysis/correlation_control.py`.
+- Compared C-STDP weights against Time-Lagged Correlation (Lag=10).
+
+**Results:**
+- **STDP Precision:** 0.2857.
+- **Correlation Precision:** 0.1703.
+- **Sparsity Contrast:** Correlation predicted 182 edges (nearly dense) while STDP predicted 14.
+- **Mechanism:** C-STDP acts as a high-pass temporal filter, focusing on discrete events rather than continuous linear dependencies. This leads to higher precision by rejecting edges that have correlated trends but lack sharp, temporally ordered activation spikes.
+
