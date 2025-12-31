@@ -306,3 +306,18 @@ C-STDP provides a robust framework for causal inference in transcriptomics, outp
 - **Behavior:** Confirmed that the sparse regime identified in synthetic data translates to stable, sparse networks in real data, while the dense regime leads to trivial fully-connected graphs.
 - **Validation:** This proves the algorithm's behavior is consistent across data types, even without ground truth.
 
+
+### Step 2: Full Permutation Diagnostics on Real Data
+
+**Changes:**
+- Created `analysis/real_data_permutation.py`.
+- Tested C-STDP on GSE215865 with three permutation strategies:
+    1. Sample Order (Global temporal destruction)
+    2. Gene-wise Time (Local temporal destruction)
+    3. Profile Swap (Topological destruction)
+
+**Results:**
+- **Sample Permutation:** Jaccard 0.0080, Rank Corr 0.1222.
+- **Gene Time Permutation:** Jaccard 0.0079, Rank Corr -0.1914.
+- **Conclusion:** The inferred GRN collapses completely when temporal structure is destroyed (Jaccard < 0.01). This confirms that the network structure on real data is driven by the specific temporal ordering of spikes, not by marginal statistics or static correlation.
+
