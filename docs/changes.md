@@ -239,3 +239,18 @@
 - **Observations:** Granger Causality failed to produce valid models for most gene pairs, resulting in rank warnings and zero significant causal links (at p < 0.05).
 - **Comparison:** C-STDP is significantly more robust for bursty, sparse time-series typical of gene expression, where the linear assumptions of VAR (Granger) are frequently violated.
 
+
+## Phase V: Real Data Validity Checks
+
+### Step 7: Cohort Consistency Analysis
+
+**Changes:**
+- Created `analysis/cohort_consistency.py`.
+- Performed random 50/50 split of GSE215865 samples (696 each).
+- Measured edge and regulator stability.
+
+**Results:**
+- **Edge Overlap (Jaccard):** 0.0383.
+- **Regulator Correlation (Out-Degree):** 0.4043.
+- **Interpretation:** Consistency is stronger at the functional level (which genes are regulators) than the topological level (exact edge targets). The low topological overlap reflects high noise or patient heterogeneity when treating samples as a single temporal sequence. Moderate regulator correlation suggests STDP identifies consistent causal drivers.
+
