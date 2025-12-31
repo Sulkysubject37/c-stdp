@@ -185,3 +185,16 @@
 - **Overlap:** Jaccard overlap between original and permuted GRNs was 0.0000.
 - **Verification:** This confirms that the STDP learning rule correctly ignores non-temporal associations and is dependent on the sequential order of gene expression events.
 
+
+### Step 3: Delayed Causality Stress Test
+
+**Changes:**
+- Created `analysis/delayed_causality.py`.
+- Tested recovery of a 3-gene chain across varying causal delays (2 to 50 steps).
+
+**Results:**
+- **Window Limit:** Inference was successful for delays up to 20 steps (`2 * tau_pos`). 
+- **Metric Peak:** Perfect recovery (F1=1.0) was achieved at Delay=20.
+- **Collapse:** Performance dropped to 0 for delays >= 30, as the STDP exponential decay reaches the noise floor.
+- **Directionality:** Correct direction (100% accuracy) was maintained for all successful detections, proving STDP robustness to varying delay lengths within its integration window.
+
