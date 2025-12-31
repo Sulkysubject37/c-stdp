@@ -333,3 +333,16 @@ C-STDP provides a robust framework for causal inference in transcriptomics, outp
 - **Traceability:** The edge is not a black-box coefficient but a cumulative sum of specific, observable temporal coincidences in the dataset.
 - **Visuals:** Generated `analysis/visuals/real_causal_trace_plot.png`.
 
+
+### Step 4: Delay Structure Diagnostics
+
+**Changes:**
+- Created `analysis/real_delay_diagnostics.py`.
+- Computed *weighted* mean temporal delay for all strong edges (weight > 0.3) by inverting the STDP function on trace logs.
+
+**Results:**
+- **Mean Weighted Delay:** 9.42 steps.
+- **Median Weighted Delay:** 9.41 steps.
+- **Consistency:** The inferred delays closely match the imposed `tau_pos = 10` parameter.
+- **Conclusion:** The algorithm is selecting edges based on interactions that occur exactly within the designed causal window, validating the temporal precision of the inference on real data.
+

@@ -128,7 +128,8 @@ class CausalSTDP:
                   spike_trains: List[np.ndarray], 
                   n_genes: int,
                   initial_weights: Optional[np.ndarray] = None,
-                  return_trace: bool = False) -> Tuple[np.ndarray, Optional[Dict]]:
+                  return_trace: bool = False,
+                  return_delays: bool = False) -> Tuple[np.ndarray, ...]:
         """
         Runs the pair-based STDP learning rule over all spike trains.
         
@@ -137,10 +138,12 @@ class CausalSTDP:
             n_genes: Number of genes.
             initial_weights: Optional starting weights. Defaults to zeros.
             return_trace: If True, returns detailed logs of updates.
+            return_delays: If True, returns matrix of avg causal delays.
             
         Returns:
-            Final weight matrix W.
-            trace: Dict mapping (i, j) -> List of (t_event, delta_w) if return_trace else None
+            weights
+            (optional) trace
+            (optional) avg_delays
         """
         if initial_weights is None:
             weights = np.zeros((n_genes, n_genes))
@@ -148,6 +151,8 @@ class CausalSTDP:
             weights = initial_weights.copy()
             
         trace = {} if return_trace else None
+        avg_delays = np.zeros((n_genes, n_genes)) if return_delays else None
+        delay_counts = np.zeros((n_genes, n_genes)) if return_delays else None
             
         # Iterate over all pairs of genes (i -> j)
         for i in range(n_genes):
@@ -165,8 +170,14 @@ class CausalSTDP:
                     for t_j in spikes_j:
                         dw = self.stdp_update(weights[i, j], t_i, t_j)
                         delta_w_sum += dw
+                        
+                        # Causal Event: Pre (i) before Post (j) -> Potentiation
+                        if return_delays and dw > 0:
+                            dt = t_j - t_i
+                            avg_delays[i, j] += dt
+                            delay_counts[i, j] += 1
+                            
                         if return_trace and abs(dw) > 1e-10:
-                            # Log the event at the time of the SECOND spike in the pair
                             pair_updates.append((max(t_i, t_j), dw))
                         
                 weights[i, j] += delta_w_sum
@@ -174,5 +185,19 @@ class CausalSTDP:
                 if return_trace:
                     pair_updates.sort(key=lambda x: x[0])
                     trace[(i, j)] = pair_updates
-                
-        return self.normalize_weights(weights), trace
+                    
+        # Finalize delays
+        if return_delays:
+            # Avoid div by zero
+            mask = delay_counts > 0
+            avg_delays[mask] /= delay_counts[mask]
+            
+        ret = [self.normalize_weights(weights)]
+        if return_trace:
+            ret.append(trace)
+        if return_delays:
+            ret.append(avg_delays)
+            
+        if len(ret) == 1:
+            return ret[0]
+        return tuple(ret)
