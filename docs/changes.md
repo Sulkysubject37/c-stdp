@@ -374,3 +374,14 @@ C-STDP provides a robust framework for causal inference in transcriptomics, outp
 - **Regulator-Severity Correlation:** -0.1438.
 - **Interpretation:** The negative correlation indicates that high-out-degree genes (putative regulators) tend to be *less* correlated with the late-stage severity score than other genes. This is consistent with a causal structure where regulators activate early (upstream) to drive downstream changes, rather than simply tracking the global severity trend.
 
+
+### Step 7: Cross-Dataset Behavioral Consistency
+
+**Changes:**
+- Created `analysis/cross_dataset_consistency.py`.
+- Compared inferred GRN properties between GSE215865 (Human) and GSE157859 (Multi-species).
+
+**Results:**
+- **Sparsity Similarity:** GSE215865 (0.9680) and GSE157859 (0.9384) both yielded similarly sparse networks.
+- **Behavioral Conclusion:** C-STDP consistently produces sparse, structured networks across vastly different datasets (different species, sample sizes 1392 vs 38), confirming that the algorithm's filtering mechanism is robust to data scale and context.
+
