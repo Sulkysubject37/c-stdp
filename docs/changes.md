@@ -128,7 +128,7 @@
 **Details:**
 - Ran C-STDP (`A_pos=0.05, A_neg=0.06`) on processed subsets.
 - **GSE215865 Findings:** Top regulator `ENSG00000222009.8`.
-- **GSE157859 Findings:** Top regulator `ENSG00000031081.11`.
+- **GSE157859 Findings:** Top regulator `ENSG00000031081.11`- IGF1.
 - Saved `inferred_grn_adj.csv`, `grn_heatmap.png`, `grn_graph.png` for both.
 
 ### Step 11: Pipeline Orchestration
@@ -149,7 +149,7 @@
 - **Visualizations:** Raster plots, Activation Order, and GRN Heatmaps generated.
 
 **Uncertainties:**
-- **Biological Validity:** Inferred regulators (e.g., `ENSG00000222009.8`) require literature verification.
+- **Biological Validity:** Inferred regulators (e.g., `ENSG00000222009.8`- ABCA6) require literature verification.
 - **Parameter Sensitivity:** STDP parameters (tau, A+, A-) were tuned on synthetic data but might need adjustment for real biological noise levels.
 - **Time/Sample:** Samples were treated as a time-series. If samples are not strictly longitudinal for the same subject, the "causality" is pseudo-temporal.
 
@@ -157,3 +157,19 @@
 - Integrate biological ground truth (e.g., ChIP-seq data) for real-world validation.
 - Implement varying delays in STDP (currently implicit in window).
 - Explore detailed longitudinal metadata for GSE215865 to respect patient timelines.
+
+## Phase I: Robustness & Stability Analysis
+
+### Step 1: Parameter Sensitivity Analysis
+
+**Changes:**
+- Created `analysis/parameter_sensitivity.py`.
+- Performed grid sweep on synthetic data.
+- Generated heatmaps in `analysis/visuals/`.
+
+**Results:**
+- **Dense Regime:** When `A_neg < A_pos`, the model over-predicts (Precision 0.17, Recall 1.0, SHD 161).
+- **Sparse Regime:** Stable recovery occurs for `A_neg >= A_pos`. Precision stabilizes at ~0.28 (above chance 0.15).
+- **Robustness:** Performance is consistent across a range of `A_pos` (0.01 to 0.1) provided the ratio is maintained.
+- **Limitation:** Recall is relatively low (~0.11), suggesting the default evaluation threshold (0.3) or spike threshold might be too conservative for this noise level.
+
