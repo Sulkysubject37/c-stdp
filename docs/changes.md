@@ -173,3 +173,15 @@
 - **Robustness:** Performance is consistent across a range of `A_pos` (0.01 to 0.1) provided the ratio is maintained.
 - **Limitation:** Recall is relatively low (~0.11), suggesting the default evaluation threshold (0.3) or spike threshold might be too conservative for this noise level.
 
+
+### Step 2: Temporal Permutation Control
+
+**Changes:**
+- Created `analysis/temporal_permutation.py`.
+- Tested C-STDP on randomly shuffled samples.
+
+**Results:**
+- **Precision Collapse:** Precision dropped from 0.2857 to 0.0000 upon sample permutation.
+- **Overlap:** Jaccard overlap between original and permuted GRNs was 0.0000.
+- **Verification:** This confirms that the STDP learning rule correctly ignores non-temporal associations and is dependent on the sequential order of gene expression events.
+
