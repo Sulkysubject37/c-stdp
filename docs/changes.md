@@ -321,3 +321,15 @@ C-STDP provides a robust framework for causal inference in transcriptomics, outp
 - **Gene Time Permutation:** Jaccard 0.0079, Rank Corr -0.1914.
 - **Conclusion:** The inferred GRN collapses completely when temporal structure is destroyed (Jaccard < 0.01). This confirms that the network structure on real data is driven by the specific temporal ordering of spikes, not by marginal statistics or static correlation.
 
+
+### Step 3: Edge-Level Interpretability on Real Data
+
+**Changes:**
+- Created `analysis/real_data_trace.py`.
+- Extracted causal evidence for the strongest inferred edge in GSE215865 (`ENSG00000117408.11 -> ENSG00000221539.1`).
+
+**Results:**
+- **Evidence Volume:** 2226 contributing spike-pair events were identified.
+- **Traceability:** The edge is not a black-box coefficient but a cumulative sum of specific, observable temporal coincidences in the dataset.
+- **Visuals:** Generated `analysis/visuals/real_causal_trace_plot.png`.
+
