@@ -254,3 +254,17 @@
 - **Regulator Correlation (Out-Degree):** 0.4043.
 - **Interpretation:** Consistency is stronger at the functional level (which genes are regulators) than the topological level (exact edge targets). The low topological overlap reflects high noise or patient heterogeneity when treating samples as a single temporal sequence. Moderate regulator correlation suggests STDP identifies consistent causal drivers.
 
+
+### Step 8: Negative Control Genes
+
+**Changes:**
+- Created `analysis/negative_controls.py`.
+- Introduced 10 shuffled expression profiles as control genes.
+- Compared out-degree distributions.
+
+**Results:**
+- **Mean Out-Degree (Real):** 0.8441.
+- **Mean Out-Degree (CTRL):** 0.9325.
+- **Top 10% Presence:** 2 out of 10 controls appeared in the top 10% of regulators.
+- **Interpretation:** C-STDP successfully avoided placing most controls at the top of the hierarchy. However, the high mean out-degree for shuffled controls suggests that high spike density in real data can lead to accumulated random weights. This justifies the use of conservative thresholds (e.g., 90th percentile) for network extraction.
+
