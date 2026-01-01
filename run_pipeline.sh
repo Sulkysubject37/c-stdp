@@ -21,21 +21,21 @@ if [ ! -f "$PYTHON" ]; then
 fi
 
 echo "[1/4] Running Synthetic Validation..."
-$PYTHON pipelines/run_synthetic_test.py
+$PYTHON scripts/validation/run_synthetic_test.py
 
 echo "[2/4] Preprocessing Real Data..."
 # Primary
-$PYTHON src/utils/preprocess.py
+$PYTHON scripts/data_prep/preprocess_primary.py
 # Secondary
-$PYTHON src/utils/preprocess_secondary.py
+$PYTHON scripts/data_prep/preprocess_secondary.py
 
 echo "[3/4] Encoding Spikes (Real Data)..."
-$PYTHON pipelines/run_real_data_spike_encoding.py
+$PYTHON scripts/inference/run_real_data_spike_encoding.py
 
 echo "[4/4] Inferring GRNs (Real Data)..."
-$PYTHON pipelines/run_real_data_cstdp.py
+$PYTHON scripts/inference/run_real_data_cstdp.py
 
 echo "=========================================="
 echo "✅ Pipeline Completed Successfully."
-echo "   Check visuals/ for results."
+echo "   Check results/visuals/ for results."
 echo "=========================================="

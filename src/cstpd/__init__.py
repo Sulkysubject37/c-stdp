@@ -1,1 +1,0 @@
-# Causal-STDP core functions
