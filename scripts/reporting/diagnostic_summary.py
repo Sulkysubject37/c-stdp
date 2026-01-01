@@ -7,8 +7,8 @@ def generate_diagnostic_summary():
     summary_data = []
     
     # 1. Parameter Sensitivity (Real)
-    if os.path.exists("analysis/real_data_sensitivity.csv"):
-        df = pd.read_csv("analysis/real_data_sensitivity.csv")
+    if os.path.exists("results/real_data_sensitivity.csv"):
+        df = pd.read_csv("results/real_data_sensitivity.csv")
         # Stable regime: Ratio >= 1.0
         stable = df[df["Ratio"] >= 1.0]
         mean_sparsity = stable["Sparsity"].mean()
@@ -37,11 +37,11 @@ def generate_diagnostic_summary():
     summary_data.append({"Diagnostic": "Cross-Dataset", "Real Data Outcome": "Sparsity ~0.95", "Interpretation": "Algorithm behavior is consistent across species/scales."})
     
     df_sum = pd.DataFrame(summary_data)
-    df_sum.to_csv("analysis/diagnostic_summary.csv", index=False)
+    df_sum.to_csv("results/diagnostic_summary.csv", index=False)
     
     print(df_sum.to_string())
     
-    with open("analysis/diagnostic_summary.md", "w") as f:
+    with open("results/diagnostic_summary.md", "w") as f:
         f.write(df_sum.to_markdown(index=False))
 
 if __name__ == "__main__":

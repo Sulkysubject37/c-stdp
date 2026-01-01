@@ -45,7 +45,7 @@ def run_causal_trace():
     # 4. Generate Table
     trace_df = pd.DataFrame(edge_trace, columns=["Time", "Delta_W"])
     trace_df["Cumulative_W"] = trace_df["Delta_W"].cumsum().clip(0, 1.0)
-    trace_df.to_csv("analysis/causal_trace_data.csv", index=False)
+    trace_df.to_csv("results/causal_trace_data.csv", index=False)
     
     # 5. Plot
     plt.figure(figsize=(12, 6))
@@ -57,7 +57,7 @@ def run_causal_trace():
     plt.ylabel("Weight Influence")
     plt.legend()
     plt.grid(True, alpha=0.2)
-    plt.savefig("analysis/visuals/causal_trace_plot.png")
+    plt.savefig("results/visuals/causal_trace_plot.png")
     plt.close()
     
     print("Interpretation: Edge strength grows with each causal spike pair (Pre before Post).")

@@ -102,14 +102,14 @@ def run_sensitivity_analysis():
         })
         
     df = pd.DataFrame(results)
-    df.to_csv("analysis/parameter_sensitivity.csv", index=False)
-    print("Saved results to analysis/parameter_sensitivity.csv")
+    df.to_csv("results/parameter_sensitivity.csv", index=False)
+    print("Saved results to results/parameter_sensitivity.csv")
     
     # 3. Generate Heatmaps
     generate_heatmaps(df)
 
 def generate_heatmaps(df):
-    os.makedirs("analysis/visuals", exist_ok=True)
+    os.makedirs("results/visuals", exist_ok=True)
     
     # Heatmap 1: A_pos vs Ratio (Amplitude Stability)
     subset1 = df[df["Experiment"] == "Amplitude"]
@@ -120,7 +120,7 @@ def generate_heatmaps(df):
     plt.title("F1 Score Stability: Amplitude (Tau=10, Sigma=1.5)")
     plt.ylabel("A_pos")
     plt.xlabel("Ratio (A_neg / A_pos)")
-    plt.savefig("analysis/visuals/heatmap_amplitude_f1.png")
+    plt.savefig("results/visuals/heatmap_amplitude_f1.png")
     plt.close()
     
     # Heatmap 2: Tau vs Sigma (Time Stability)
@@ -132,10 +132,10 @@ def generate_heatmaps(df):
     plt.title("F1 Score Stability: Time Constants (A_pos=0.05, A_neg=0.06)")
     plt.ylabel("Tau")
     plt.xlabel("Sigma (Threshold)")
-    plt.savefig("analysis/visuals/heatmap_tau_sigma_f1.png")
+    plt.savefig("results/visuals/heatmap_tau_sigma_f1.png")
     plt.close()
     
-    print("Saved heatmaps to analysis/visuals/")
+    print("Saved heatmaps to results/visuals/")
 
 if __name__ == "__main__":
     run_sensitivity_analysis()

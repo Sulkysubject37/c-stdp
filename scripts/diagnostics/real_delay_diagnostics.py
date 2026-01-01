@@ -74,7 +74,7 @@ def run_delay_diagnostics():
         print(f"Median Weighted Delay: {np.median(inferred_delays):.2f} steps")
     
     # 4. Visuals
-    os.makedirs("analysis/visuals", exist_ok=True)
+    os.makedirs("results/visuals", exist_ok=True)
     plt.figure(figsize=(10, 6))
     sns.histplot(inferred_delays, bins=30, kde=True, color='purple')
     plt.title("Inferred Temporal Delays (Delta t) for Strong Edges")
@@ -82,7 +82,7 @@ def run_delay_diagnostics():
     plt.ylabel("Count")
     plt.axvline(x=10, color='r', linestyle='--', label="Tau_pos (10)")
     plt.legend()
-    plt.savefig("analysis/visuals/real_delay_distribution.png")
+    plt.savefig("results/visuals/real_delay_distribution.png")
     plt.close()
     
     print("Interpretation: Delta t reflects ordering preference under the chosen temporal discretization.")

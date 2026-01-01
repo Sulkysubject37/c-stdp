@@ -31,7 +31,7 @@ def run_real_permutation_diagnostics():
         cstdp = CausalSTDP(w_max=1.0, A_pos=params["A_pos"], A_neg=params["A_neg"], 
                            tau_pos=params["tau"], tau_neg=params["tau"])
         spikes = cstdp.compute_spike_times(data_matrix, time_points, thresh)
-        w, _ = cstdp.run_cstdp(spikes, n_genes)
+        w = cstdp.run_cstdp(spikes, n_genes)
         
         mw = np.max(w)
         norm_w = w / mw if mw > 0 else w
@@ -97,7 +97,7 @@ def run_real_permutation_diagnostics():
     results.append(compare(w_swap, "Gene_Profile_Swap"))
     
     # 5. Visuals
-    os.makedirs("analysis/visuals", exist_ok=True)
+    os.makedirs("results/visuals", exist_ok=True)
     fig, axes = plt.subplots(1, 4, figsize=(20, 5))
     
     sns.heatmap(w_orig, ax=axes[0], cmap="viridis", vmin=0, vmax=1)
@@ -112,7 +112,7 @@ def run_real_permutation_diagnostics():
     sns.heatmap(w_swap, ax=axes[3], cmap="viridis", vmin=0, vmax=1)
     axes[3].set_title("Profile Swap")
     
-    plt.savefig("analysis/visuals/real_permutation_tests.png")
+    plt.savefig("results/visuals/real_permutation_tests.png")
     plt.close()
     
     # 6. Conclusion

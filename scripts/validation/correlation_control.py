@@ -26,7 +26,7 @@ def run_correlation_control():
     thresholds = calculate_adaptive_thresholds(expression, sigma=1.5)
     cstdp = CausalSTDP(w_max=1.0, A_pos=0.05, A_neg=0.06, tau_pos=10, tau_neg=10)
     spike_trains = cstdp.compute_spike_times(expression, np.arange(n_timepoints), thresholds)
-    weights_stdp, _ = cstdp.run_cstdp(spike_trains, n_genes)
+    weights_stdp = cstdp.run_cstdp(spike_trains, n_genes)
     
     # Normalize STDP
     max_stdp = np.max(weights_stdp)
@@ -81,7 +81,7 @@ def run_correlation_control():
     axes[0].set_title("C-STDP Weights")
     sns.heatmap(norm_corr, ax=axes[1], cmap="viridis", vmin=0, vmax=1)
     axes[1].set_title(f"Time-Lagged Correlation (Lag={lag})")
-    plt.savefig("analysis/visuals/stdp_vs_correlation.png")
+    plt.savefig("results/visuals/stdp_vs_correlation.png")
     plt.close()
     
     print("\nInterpretation: STDP filters edges by event-precedence, which is stricter than lagged correlation.")

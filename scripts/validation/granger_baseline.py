@@ -27,7 +27,7 @@ def run_granger_baseline():
     thresholds = calculate_adaptive_thresholds(expression, sigma=1.5)
     cstdp = CausalSTDP(w_max=1.0, A_pos=0.05, A_neg=0.06, tau_pos=10, tau_neg=10)
     spike_trains = cstdp.compute_spike_times(expression, np.arange(n_timepoints), thresholds)
-    weights_stdp, _ = cstdp.run_cstdp(spike_trains, n_genes)
+    weights_stdp = cstdp.run_cstdp(spike_trains, n_genes)
     
     # Normalize STDP
     max_stdp = np.max(weights_stdp)
@@ -76,7 +76,7 @@ def run_granger_baseline():
     axes[0].set_title("C-STDP Weights")
     sns.heatmap(norm_granger, ax=axes[1], cmap="magma", vmin=0, vmax=1)
     axes[1].set_title("Granger Causality (1-p)")
-    plt.savefig("analysis/visuals/stdp_vs_granger.png")
+    plt.savefig("results/visuals/stdp_vs_granger.png")
     plt.close()
     
     # Save for summary
@@ -84,7 +84,7 @@ def run_granger_baseline():
         {"Method": "STDP", "Precision": m_stdp['precision'], "Recall": m_stdp['recall'], "F1": m_stdp['f1']},
         {"Method": "Granger", "Precision": m_granger['precision'], "Recall": m_granger['recall'], "F1": m_granger['f1']}
     ])
-    summary.to_csv("analysis/baseline_comparison.csv", index=False)
+    summary.to_csv("results/baseline_comparison.csv", index=False)
 
 if __name__ == "__main__":
     run_granger_baseline()

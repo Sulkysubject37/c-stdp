@@ -76,13 +76,13 @@ def run_negative_controls():
     print(f"Controls in Top {top_k}: {len(bad_actors)} (Names: {bad_actors})")
     
     # 5. Visuals
-    os.makedirs("analysis/visuals", exist_ok=True)
+    os.makedirs("results/visuals", exist_ok=True)
     plt.figure(figsize=(10, 6))
     sns.boxplot(data=[res_real, res_shuff, res_noise], palette="pastel")
     plt.xticks([0, 1, 2], ["Real", "Shuffled", "Poisson Noise"])
     plt.ylabel("Out-Degree sum")
     plt.title("Out-Degree Distribution: Real vs Controls")
-    plt.savefig("analysis/visuals/negative_control_boxplot.png")
+    plt.savefig("results/visuals/negative_control_boxplot.png")
     plt.close()
     
     if len(bad_actors) > (2 * n_controls) * 0.2:

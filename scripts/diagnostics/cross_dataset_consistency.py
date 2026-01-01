@@ -63,7 +63,7 @@ def run_cross_dataset_consistency():
     print(f"Sparsity GSE157859: {results['GSE157859']['Sparsity']:.4f}")
     
     # Degree Distribution Plot
-    os.makedirs("analysis/visuals", exist_ok=True)
+    os.makedirs("results/visuals", exist_ok=True)
     plt.figure(figsize=(12, 6))
     
     plt.subplot(1, 2, 1)
@@ -80,7 +80,7 @@ def run_cross_dataset_consistency():
     plt.xlabel("Normalized Weight")
     plt.legend()
     
-    plt.savefig("analysis/visuals/cross_dataset_comparison.png")
+    plt.savefig("results/visuals/cross_dataset_comparison.png")
     plt.close()
     
     print("Interpretation: Similar sparsity and degree distributions suggest the algorithm behaves consistently across different biological contexts.")

@@ -65,7 +65,7 @@ def run_delay_stress_test():
         })
         
     df = pd.DataFrame(results)
-    df.to_csv("analysis/delay_stress_test.csv", index=False)
+    df.to_csv("results/delay_stress_test.csv", index=False)
     
     # 2. Plot
     plt.figure(figsize=(10, 6))
@@ -77,7 +77,7 @@ def run_delay_stress_test():
     plt.title("STDP Performance vs Causal Delay Length")
     plt.legend()
     plt.grid(True, alpha=0.3)
-    plt.savefig("analysis/visuals/delay_stress_test.png")
+    plt.savefig("results/visuals/delay_stress_test.png")
     plt.close()
     
     print("\n--- DELAY TEST RESULTS ---")

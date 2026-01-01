@@ -64,13 +64,13 @@ def run_permutation_control():
     print(f"Overlap (Jaccard):       {jaccard:.4f}")
     
     # 5. Visuals
-    os.makedirs("analysis/visuals", exist_ok=True)
+    os.makedirs("results/visuals", exist_ok=True)
     fig, axes = plt.subplots(1, 2, figsize=(14, 6))
     sns.heatmap(grn_orig, ax=axes[0], cmap="viridis", vmin=0, vmax=1)
     axes[0].set_title("Original Inferred GRN")
     sns.heatmap(grn_perm, ax=axes[1], cmap="viridis", vmin=0, vmax=1)
     axes[1].set_title("Permuted Inferred GRN")
-    plt.savefig("analysis/visuals/permutation_comparison.png")
+    plt.savefig("results/visuals/permutation_comparison.png")
     plt.close()
     
     # 6. Weight Distribution Shift
@@ -79,7 +79,7 @@ def run_permutation_control():
     plt.hist(raw_perm.flatten(), bins=50, alpha=0.5, label="Permuted", density=True)
     plt.title("Weight Distribution Shift under Permutation")
     plt.legend()
-    plt.savefig("analysis/visuals/permutation_dist_shift.png")
+    plt.savefig("results/visuals/permutation_dist_shift.png")
     plt.close()
     
     # REQUIRED CONCLUSION CHECK

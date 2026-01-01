@@ -45,7 +45,7 @@ def run_cohort_consistency():
         # Treated as pseudo-time in each cohort
         time_points = np.arange(data.shape[1])
         spike_trains = cstdp.compute_spike_times(data, time_points, thresholds)
-        weights, _ = cstdp.run_cstdp(spike_trains, n_genes)
+        weights = cstdp.run_cstdp(spike_trains, n_genes)
         
         # Normalize
         mw = np.max(weights)
@@ -77,13 +77,13 @@ def run_cohort_consistency():
     print(f"Regulator Correlation:  {out_corr:.4f}")
     
     # 5. Visuals
-    os.makedirs("analysis/visuals", exist_ok=True)
+    os.makedirs("results/visuals", exist_ok=True)
     fig, axes = plt.subplots(1, 2, figsize=(14, 6))
     sns.heatmap(grn1, ax=axes[0], cmap="viridis", vmin=0, vmax=1)
     axes[0].set_title("Cohort 1 GRN")
     sns.heatmap(grn2, ax=axes[1], cmap="viridis", vmin=0, vmax=1)
     axes[1].set_title("Cohort 2 GRN")
-    plt.savefig("analysis/visuals/cohort_consistency_heatmaps.png")
+    plt.savefig("results/visuals/cohort_consistency_heatmaps.png")
     plt.close()
     
     plt.figure(figsize=(8, 8))
@@ -91,7 +91,7 @@ def run_cohort_consistency():
     plt.xlabel("Cohort 1 Out-Degree")
     plt.ylabel("Cohort 2 Out-Degree")
     plt.title("Stability of Gene Out-Degrees")
-    plt.savefig("analysis/visuals/cohort_regulator_stability.png")
+    plt.savefig("results/visuals/cohort_regulator_stability.png")
     plt.close()
 
 if __name__ == "__main__":

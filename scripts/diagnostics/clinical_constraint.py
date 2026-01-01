@@ -63,7 +63,7 @@ def run_clinical_constraint():
     print(f"Correlation between Out-Degree and Severity-Association: {consistency_corr:.4f}")
     
     # 6. Visuals
-    os.makedirs("analysis/visuals", exist_ok=True)
+    os.makedirs("results/visuals", exist_ok=True)
     plt.figure(figsize=(8, 6))
     plt.scatter(target_scores, regulator_scores, alpha=0.7)
     plt.xlabel("Correlation with Clinical Severity (Late)")
@@ -71,7 +71,7 @@ def run_clinical_constraint():
     plt.title("Temporal Ordering Validation")
     plt.axvline(0, color='grey', linestyle='--')
     plt.axhline(0, color='grey', linestyle='--')
-    plt.savefig("analysis/visuals/clinical_constraint_check.png")
+    plt.savefig("results/visuals/clinical_constraint_check.png")
     plt.close()
     
     print("Interpretation: A low or negative correlation suggests regulators are distinct from late-stage effectors, consistent with a causal cascade.")

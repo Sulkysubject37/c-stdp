@@ -42,7 +42,7 @@ def run_real_sensitivity_analysis():
     cstdp_base = CausalSTDP(w_max=1.0, A_pos=base_params["A_pos"], A_neg=base_params["A_neg"], 
                             tau_pos=base_params["tau"], tau_neg=base_params["tau"])
     spikes_base = cstdp_base.compute_spike_times(data, time_points, thresh_base)
-    w_base, _ = cstdp_base.run_cstdp(spikes_base, n_genes)
+    w_base = cstdp_base.run_cstdp(spikes_base, n_genes)
     
     # Normalize Baseline
     mw_b = np.max(w_base)
@@ -68,7 +68,7 @@ def run_real_sensitivity_analysis():
         cstdp = CausalSTDP(w_max=1.0, A_pos=a_p, A_neg=a_n, 
                            tau_pos=base_params["tau"], tau_neg=base_params["tau"])
         spikes = cstdp.compute_spike_times(data, time_points, thresh)
-        w, _ = cstdp.run_cstdp(spikes, n_genes)
+        w = cstdp.run_cstdp(spikes, n_genes)
         
         # Metrics
         mw = np.max(w)
@@ -110,7 +110,7 @@ def run_real_sensitivity_analysis():
         cstdp = CausalSTDP(w_max=1.0, A_pos=base_params["A_pos"], A_neg=base_params["A_neg"], 
                            tau_pos=tau, tau_neg=tau)
         spikes = cstdp.compute_spike_times(data, time_points, thresh)
-        w, _ = cstdp.run_cstdp(spikes, n_genes)
+        w = cstdp.run_cstdp(spikes, n_genes)
         
         # Metrics
         mw = np.max(w)
@@ -141,13 +141,13 @@ def run_real_sensitivity_analysis():
         })
         
     df_res = pd.DataFrame(results)
-    df_res.to_csv("analysis/real_data_sensitivity.csv", index=False)
+    df_res.to_csv("results/real_data_sensitivity.csv", index=False)
     
     # Heatmaps
     plot_heatmaps(df_res)
 
 def plot_heatmaps(df):
-    os.makedirs("analysis/visuals", exist_ok=True)
+    os.makedirs("results/visuals", exist_ok=True)
     
     # 1. Amplitude Stability (Degree Correlation)
     sub1 = df[df["Experiment"] == "Amplitude"]
@@ -158,7 +158,7 @@ def plot_heatmaps(df):
     plt.title("Real Data Stability: Regulator Rank Correlation\n(Amplitude Sweep)")
     plt.ylabel("A_pos")
     plt.xlabel("Ratio (A_neg/A_pos)")
-    plt.savefig("analysis/visuals/real_heatmap_amp_corr.png")
+    plt.savefig("results/visuals/real_heatmap_amp_corr.png")
     plt.close()
     
     # 2. Tau/Sigma Stability (Degree Correlation)
@@ -170,10 +170,10 @@ def plot_heatmaps(df):
     plt.title("Real Data Stability: Regulator Rank Correlation\n(Time/Threshold Sweep)")
     plt.ylabel("Tau")
     plt.xlabel("Sigma")
-    plt.savefig("analysis/visuals/real_heatmap_tausigma_corr.png")
+    plt.savefig("results/visuals/real_heatmap_tausigma_corr.png")
     plt.close()
     
-    print("Visuals saved to analysis/visuals/")
+    print("Visuals saved to results/visuals/")
 
 if __name__ == "__main__":
     run_real_sensitivity_analysis()
