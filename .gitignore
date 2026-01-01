@@ -10,3 +10,4 @@ data/processed/
 docs/*
 !docs/pipeline/
 !docs/pipeline/algorithmic_approach.md
+docs/draft_paper.md
