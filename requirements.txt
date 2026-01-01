@@ -1,9 +1,17 @@
-# Python dependencies
+# Core Dependencies
 numpy
-scipy
 pandas
+scipy
+networkx
+
+# Analysis & Statistics
+statsmodels
 scikit-learn
+
+# Visualization
 matplotlib
 seaborn
-brian2
+tabulate
+
+# Testing
 pytest
