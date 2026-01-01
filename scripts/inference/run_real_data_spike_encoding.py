@@ -8,8 +8,8 @@ import seaborn as sns
 # Add project root to path
 sys.path.append(os.getcwd())
 
-from src.cstdp.stdp import CausalSTDP
-from src.utils.spike_encoding import calculate_adaptive_thresholds, plot_raster
+from src.cstdp.core import CausalSTDP
+from src.cstdp.utils.spike_encoding import calculate_adaptive_thresholds, plot_raster
 
 def run_spike_encoding(input_file: str, dataset_name: str):
     """

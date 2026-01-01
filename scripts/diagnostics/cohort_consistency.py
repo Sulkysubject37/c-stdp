@@ -7,8 +7,8 @@ import seaborn as sns
 
 sys.path.append(os.getcwd())
 
-from src.cstdp.stdp import CausalSTDP
-from src.utils.spike_encoding import calculate_adaptive_thresholds
+from src.cstdp.core import CausalSTDP
+from src.cstdp.utils.spike_encoding import calculate_adaptive_thresholds
 
 def run_cohort_consistency():
     print("--- Starting Cohort Consistency Analysis (GSE215865) ---")

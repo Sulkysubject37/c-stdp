@@ -8,10 +8,10 @@ from statsmodels.tsa.stattools import grangercausalitytests
 
 sys.path.append(os.getcwd())
 
-from src.utils.simulate_grn import generate_synthetic_grn, simulate_expression
-from src.utils.spike_encoding import calculate_adaptive_thresholds
-from src.cstdp.stdp import CausalSTDP
-from src.utils.evaluate import calculate_metrics
+from src.cstdp.utils.simulate_grn import generate_synthetic_grn, simulate_expression
+from src.cstdp.utils.spike_encoding import calculate_adaptive_thresholds
+from src.cstdp.core import CausalSTDP
+from src.cstdp.utils.evaluate import calculate_metrics
 
 def run_granger_baseline():
     print("--- Starting Granger Causality Baseline Comparison ---")

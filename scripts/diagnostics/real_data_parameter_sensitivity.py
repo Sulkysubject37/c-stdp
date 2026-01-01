@@ -9,8 +9,8 @@ from scipy.stats import spearmanr
 
 sys.path.append(os.getcwd())
 
-from src.utils.spike_encoding import calculate_adaptive_thresholds
-from src.cstdp.stdp import CausalSTDP
+from src.cstdp.utils.spike_encoding import calculate_adaptive_thresholds
+from src.cstdp.core import CausalSTDP
 
 def run_real_sensitivity_analysis():
     print("--- Starting Parameter Sensitivity Analysis on Real Data (GSE215865) ---")

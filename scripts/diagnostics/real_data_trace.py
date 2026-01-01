@@ -7,8 +7,8 @@ import seaborn as sns
 
 sys.path.append(os.getcwd())
 
-from src.utils.spike_encoding import calculate_adaptive_thresholds
-from src.cstdp.stdp import CausalSTDP
+from src.cstdp.utils.spike_encoding import calculate_adaptive_thresholds
+from src.cstdp.core import CausalSTDP
 
 def run_real_trace():
     print("--- Starting Edge-Level Causal Trace on Real Data (GSE215865) ---")

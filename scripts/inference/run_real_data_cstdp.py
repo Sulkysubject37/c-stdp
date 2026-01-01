@@ -9,8 +9,8 @@ import networkx as nx
 # Add project root to path
 sys.path.append(os.getcwd())
 
-from src.cstdp.stdp import CausalSTDP
-from src.utils.spike_encoding import calculate_adaptive_thresholds
+from src.cstdp.core import CausalSTDP
+from src.cstdp.utils.spike_encoding import calculate_adaptive_thresholds
 
 def run_cstdp_inference(input_file: str, dataset_name: str):
     """
