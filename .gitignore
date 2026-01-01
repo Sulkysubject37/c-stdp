@@ -3,3 +3,8 @@ __pycache__/
 .env/
 data/raw/
 data/processed/
+
+# Ignore documentation logs but keep pipeline docs
+docs/*
+!docs/pipeline/
+!docs/pipeline/algorithmic_approach.md
