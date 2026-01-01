@@ -14,4 +14,4 @@ seaborn
 tabulate
 
 # Testing
-pytest
+pytestbrian2
