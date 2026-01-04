@@ -39,8 +39,8 @@ C-STDP/
 1.  Clone the repository.
 2.  Set up the Python environment:
     ```bash
-    python3 -m venv casual-stdp
-    source casual-stdp/bin/activate
+    python3 -m venv causal-stdp
+    source causal-stdp/bin/activate
     pip install -r requirements.txt
     ```
 
