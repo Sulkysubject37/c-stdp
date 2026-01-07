@@ -4,6 +4,14 @@ import os
 import sys
 from typing import List, Optional
 
+# Add project root to path to import src
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(current_dir, "../../"))
+if project_root not in sys.path:
+    sys.path.append(project_root)
+
+from src.cstdp.utils.immune_gene_sets import IMMUNE_GENE_UNIVERSE
+
 def load_expression_matrix(file_path: str) -> pd.DataFrame:
     """
     Parses a Gene Expression CSV file into a DataFrame.
@@ -70,7 +78,7 @@ def normalize_expression(df: pd.DataFrame) -> pd.DataFrame:
     return df_norm
 
 def select_genes(df: pd.DataFrame, 
-                 selection_strategy: str = 'variance', 
+                 selection_strategy: str = 'immune_focused', 
                  n_genes: int = 50,
                  target_genes: Optional[List[str]] = None) -> pd.DataFrame:
     """
@@ -81,6 +89,22 @@ def select_genes(df: pd.DataFrame,
         print(f"Selected {len(available)}/{len(target_genes)} target genes found.")
         return df.loc[available]
     
+    elif selection_strategy == 'immune_focused':
+        print("Filtering for Immune Response Universe (Symposium Pivot)...")
+        # Intersect available genes with immune universe
+        available_immune = [g for g in df.index if g in IMMUNE_GENE_UNIVERSE]
+        print(f"Found {len(available_immune)} immune genes in dataset.")
+        
+        # If we have more than n_genes, pick top variable ones among them
+        subset = df.loc[available_immune]
+        if len(available_immune) > n_genes:
+            print(f"Reducing to top {n_genes} immune genes by variance...")
+            variances = subset.var(axis=1)
+            top_genes = variances.nlargest(n_genes).index
+            return subset.loc[top_genes]
+        else:
+            return subset
+
     elif selection_strategy == 'variance':
         print(f"Selecting top {n_genes} genes by variance...")
         variances = df.var(axis=1)
