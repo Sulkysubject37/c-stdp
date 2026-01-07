@@ -36,4 +36,62 @@
 
 ### Non-Claims
 
+
+
 - We are not changing the underlying mathematics, only the presentation layer.
+
+
+
+
+
+
+
+## Phase 3: Downstream Biological Contextualization
+
+
+
+**Date:** 2026-01-08
+
+
+
+
+
+
+
+### Changes
+
+
+
+- **Pathway Annotation:** Created `src/cstdp/utils/pathway_annotation.py` to map genes to static KEGG/Reactome subsets.
+
+
+
+- **Druggability:** Created `src/cstdp/utils/drug_intersection.py` to highlight overlaps with known COVID-19 therapeutics (e.g., Tocilizumab/IL6).
+
+
+
+
+
+
+
+### Rationale (Clinical Relevance)
+
+
+
+- Moves the output from "Graph Theory" to "Translational Insight". Answers "What can we do about it?"
+
+
+
+
+
+
+
+### Non-Claims
+
+
+
+- **STRICT:** We report *intersection* with drug targets. We do NOT predict efficacy or suggest off-label use. This is hypothesis-generating context only.
+
+
+
+
