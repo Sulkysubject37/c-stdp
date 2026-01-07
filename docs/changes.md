@@ -90,7 +90,131 @@
 
 
 
+
+
+
+
 - **STRICT:** We report *intersection* with drug targets. We do NOT predict efficacy or suggest off-label use. This is hypothesis-generating context only.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Phase 4: Temporal Infection Cascade Visualization
+
+
+
+
+
+
+
+**Date:** 2026-01-08
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Changes
+
+
+
+
+
+
+
+- **Cascade Plot:** Created `src/visualization/temporal_cascade.py` to generate the "Infection Cascade" plot.
+
+
+
+
+
+
+
+- **Logic:** Sorts genes by onset time and overlays strongest causal links as arrows.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Rationale (Clinical Relevance)
+
+
+
+
+
+
+
+- Replaces abstract raster plots with a narrative visual: "A triggers B triggers C".
+
+
+
+
+
+
+
+- Directly addresses the "Cytokine Storm" timeline question.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Non-Claims
+
+
+
+
+
+
+
+- Arrows represent *temporal precedence*, not necessarily direct physical binding.
+
+
+
+
+
+
+
+
 
 
 
