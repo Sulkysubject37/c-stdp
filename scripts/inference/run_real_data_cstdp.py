@@ -102,4 +102,8 @@ def run_cstdp_inference(input_file: str, dataset_name: str):
     print(f"Saved to {output_dir}")
 
 if __name__ == "__main__":
+    # Primary Run
     run_cstdp_inference("data/processed/GSE215865_immune_subset.csv", "GSE215865_Immune")
+    
+    # Supplementary Run
+    run_cstdp_inference("data/processed/GSE157859_immune_subset.csv", "GSE157859_Immune")
