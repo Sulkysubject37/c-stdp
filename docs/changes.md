@@ -1,3 +1,4 @@
+
 ## Phase 1: Immune-Aware Data Preprocessing (Executed)
 - **Step 1:** Detected Ensembl IDs and Symbols in datasets.
 - **Step 2:** Implemented `src/utils/gene_id_mapping.py` using `mygene`.
@@ -30,3 +31,9 @@
 - **Step 11:** Generated Infection Cascade Plots (`src/visualization/temporal_cascade.py`)
     - Visualized top 30 strongest temporal links against gene onset time.
     - Saved to `visuals/real_data/*/temporal_cascade.png`.
+- **Symposium Visuals (New):**
+    - **Activation Timeline:** Dynamic MP4 showing immune gene activation order (`src/visualization/activation_timeline.py`).
+    - **Dynamic Cascade:** Network evolution animation (`src/visualization/dynamic_cascade.py`).
+    - **Delay Distribution:** Histogram of inferred causal delays (`src/visualization/delay_distribution.py`).
+    - **Comparative Cascade:** Side-by-side static comparison of both datasets (`src/visualization/compare_cascades.py`).
+    - **Regulator Replay:** Dynamic tracing of downstream activation from top regulators (`src/visualization/regulator_replay.py`).
