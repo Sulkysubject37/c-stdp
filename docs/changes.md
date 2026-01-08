@@ -27,13 +27,12 @@
     - Annotations found for `HEXIM1`, `RABL3` (GSE215865) and `HMOX1`, `TNFRSF8` (GSE157859).
     - Note: Coverage sparse, primarily ChEMBL hits.
 
-## Phase 4: Visualization
-- **Step 11:** Generated Infection Cascade Plots (`src/visualization/temporal_cascade.py`)
-    - Visualized top 30 strongest temporal links against gene onset time.
-    - Saved to `visuals/real_data/*/temporal_cascade.png`.
-- **Symposium Visuals (New):**
-    - **Activation Timeline:** Dynamic MP4 showing immune gene activation order (`src/visualization/activation_timeline.py`).
-    - **Dynamic Cascade:** Network evolution animation (`src/visualization/dynamic_cascade.py`).
-    - **Delay Distribution:** Histogram of inferred causal delays (`src/visualization/delay_distribution.py`).
-    - **Comparative Cascade:** Side-by-side static comparison of both datasets (`src/visualization/compare_cascades.py`).
-    - **Regulator Replay:** Dynamic tracing of downstream activation from top regulators (`src/visualization/regulator_replay.py`).
+## Phase 4: Final Symposium Visualization (Phase-Centric)
+- **Phase I:** Defined Immune Response Phases (`src/visualization/define_response_phases.py`).
+    - Adapted to 85% immediate-onset genes (Phase I: Immediate).
+- **Phase II:** Generated Phase Architecture Summary (`phase_architecture.png`).
+- **Phase III:** Collapsed network influence into Phase-to-Phase flows (`phase_flow.png`).
+- **Phase IV (Spotlight):** Generated dynamic animations for HEXIM1 and HMOX1 influence (`hexim1_spotlight.mp4`, `hmox1_spotlight.mp4`).
+    - Result: Causal influence confirmed localized to Phase I.
+- **Phase V:** Mapped Phase progression against true time in GSE157859 (`GSE157859_phase_timeline.png`).
+- **Phase VI:** Created Conceptual Comparison Figure (`conceptual_comparison.png`) for symposium slides.
