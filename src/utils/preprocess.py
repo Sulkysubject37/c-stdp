@@ -73,10 +73,10 @@ if __name__ == "__main__":
         sep=','
     )
     
-    # Dataset 2: GSE157859 (Symbols, CSV)
+    # Dataset 2: GSE157859 (Symbols, TSV)
     preprocess_immune_subset(
-        "data/raw/GSE157859/GSE157859_TPM.csv.gz",
+        "data/raw/GSE157859/GSE157859_TPM_matrix_of_lncRNA-mRNA_all_Samples.txt.gz",
         MAPPING_FILE, IMMUNE_FILE, 
         "data/processed/GSE157859_immune_subset.csv",
-        sep=','
+        sep='\t'
     )

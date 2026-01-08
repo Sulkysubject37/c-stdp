@@ -40,9 +40,9 @@ def fetch_datasets():
     download_file(url1, dest1)
 
     # GSE157859 (Infection Response)
-    # Correct filename: GSE157859_TPM.csv.gz (verified via search)
-    url2 = "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE157nnn/GSE157859/suppl/GSE157859_TPM.csv.gz"
-    dest2 = raw_data_dir / "GSE157859" / "GSE157859_TPM.csv.gz"
+    # Correct filename verified via search: GSE157859_TPM_matrix_of_lncRNA-mRNA_all_Samples.txt.gz
+    url2 = "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE157nnn/GSE157859/suppl/GSE157859_TPM_matrix_of_lncRNA-mRNA_all_Samples.txt.gz"
+    dest2 = raw_data_dir / "GSE157859" / "GSE157859_TPM_matrix_of_lncRNA-mRNA_all_Samples.txt.gz"
     download_file(url2, dest2)
 
 if __name__ == "__main__":
