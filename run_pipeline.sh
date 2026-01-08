@@ -9,33 +9,30 @@ echo "   C-STDP: Causal Spike-Timing Dependent  "
 echo "   Plasticity for GRN Inference           "
 echo "=========================================="
 
-# Activate Environment (Assuming user has set it up or it's active)
-# If running in this specific session, we use the venv path explicitly in python calls
-# or just assume python points to the venv.
-# For robustness in this environment, I'll use the venv path.
-PYTHON="casual-stdp/bin/python"
+# Use python3 directly (assuming environment is active or system python is sufficient)
+PYTHON="python3"
 
-if [ ! -f "$PYTHON" ]; then
-    echo "Python venv not found at $PYTHON. Please run setup first."
-    exit 1
-fi
+echo "[1/6] Fetching Data..."
+$PYTHON scripts/data_prep/fetch_data.py
 
-echo "[1/4] Running Synthetic Validation..."
-$PYTHON scripts/validation/run_synthetic_test.py
+echo "[2/6] Preparing Immune Context..."
+$PYTHON src/utils/gene_id_mapping.py
+$PYTHON src/utils/immune_gene_sets.py
 
-echo "[2/4] Preprocessing Real Data..."
-# Primary
-$PYTHON scripts/data_prep/preprocess_primary.py
-# Secondary
-$PYTHON scripts/data_prep/preprocess_secondary.py
+echo "[3/6] Preprocessing Datasets..."
+$PYTHON src/utils/preprocess.py
 
-echo "[3/4] Encoding Spikes (Real Data)..."
-$PYTHON scripts/inference/run_real_data_spike_encoding.py
-
-echo "[4/4] Inferring GRNs (Real Data)..."
+echo "[4/6] Inferring GRNs (Vectorized C-STDP)..."
 $PYTHON scripts/inference/run_real_data_cstdp.py
+
+echo "[5/6] Annotating Results..."
+$PYTHON src/utils/pathway_annotation.py
+$PYTHON src/utils/drug_intersection.py
+
+echo "[6/6] Generating Visualizations..."
+$PYTHON scripts/visualization/generate_cascade.py
 
 echo "=========================================="
 echo "✅ Pipeline Completed Successfully."
-echo "   Check results/visuals/ for results."
+echo "   Check visuals/real_data/ for results."
 echo "=========================================="

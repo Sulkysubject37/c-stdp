@@ -16,3 +16,6 @@ tabulate
 # Testing
 pytest
 brian2
+requests
+mygene
+gseapy
